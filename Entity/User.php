@@ -50,7 +50,7 @@ class User extends AbstractRoleSubject implements Serializable, AdvancedUserInte
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"api_user", "api_organization_tree", "api_organization_list"})
+     * @Groups({"api_user", "api_organization_tree", "api_organization_list","api_message"})
      */
     protected $id;
 
@@ -59,7 +59,7 @@ class User extends AbstractRoleSubject implements Serializable, AdvancedUserInte
      *
      * @ORM\Column(name="first_name", length=50)
      * @Assert\NotBlank()
-     * @Groups({"api_user"})
+     * @Groups({"api_user","api_message"})
      * @SerializedName("firstName")
      */
     protected $firstName;
@@ -69,7 +69,7 @@ class User extends AbstractRoleSubject implements Serializable, AdvancedUserInte
      *
      * @ORM\Column(name="last_name", length=50)
      * @Assert\NotBlank()
-     * @Groups({"api_user"})
+     * @Groups({"api_user","api_message"})
      * @SerializedName("lastName")
      */
     protected $lastName;
@@ -729,8 +729,8 @@ class User extends AbstractRoleSubject implements Serializable, AdvancedUserInte
                 'id' => $this->id,
                 'username' => $this->username,
                 'roles' => $this->getRoles()
-            )
-        );
+                )
+            );
     }
 
     /**
@@ -1093,7 +1093,7 @@ class User extends AbstractRoleSubject implements Serializable, AdvancedUserInte
             'phone' => true,
             'picture' => true,
             'description' => true
-        );
+            );
     }
 
     public function getOptions()
@@ -1183,7 +1183,7 @@ class User extends AbstractRoleSubject implements Serializable, AdvancedUserInte
             'mail',
             'administrativeCode',
             'username'
-        );
+            );
     }
     
     public static function getSearchableFields()

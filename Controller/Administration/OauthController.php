@@ -181,6 +181,7 @@ class OauthController extends Controller
      */
     public function editClientAction(Client $client)
     {
+        
         $form = $this->get('form.factory')->create(new OauthClientType(), $client);
         $form->handleRequest($this->request);
 

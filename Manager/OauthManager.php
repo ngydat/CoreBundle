@@ -84,6 +84,8 @@ class OauthManager extends ClientManager
         $serverOutput = $this->curlManager->exec($url);
         $json = json_decode($serverOutput);
 
+       
+
         if ($json && property_exists($json, 'access_token')) {
             return $this->createAccess(
                 $id,

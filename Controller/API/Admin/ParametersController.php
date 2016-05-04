@@ -26,6 +26,9 @@ class ParametersController extends FOSRestController
 {
     private $request;
 
+   /** @DI\Inject("service_container") */
+    public $container;
+
     /**
      * @DI\InjectParams({
      *     "request" = @DI\Inject("request"),
@@ -58,4 +61,8 @@ class ParametersController extends FOSRestController
 
         return $data;
     }
+
+   
+
+
 }
