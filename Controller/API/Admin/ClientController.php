@@ -47,13 +47,26 @@ class ClientController extends FOSRestController {
       $clientId = $client->getConcatRandomId();
       $clientSecret = $client->getSecret();
 
-			 $tab = $client->getAccessTokens(); // all access tokens
-			 $isExpired = $tab[count($tab)-1]->hasExpired(); //check if the most recent access token has expired
-
-      $result = array('client_id' => $clientId, 'client_secret' =>$clientSecret, 'hasExpired'=>$isExpired);
+      $result = array('client_id' => $clientId, 'client_secret' =>$clientSecret);
       return $result;
 
     }
+
+		/**
+		 *
+		 */
+		public function getExpiredAction(){
+			$arr = $this->oauthManager->findVisibleClients();
+      $client = $arr[0];
+			$tab = $client->getAccessTokens(); // all access tokens
+			$mostRecentToken = $tab[count($tab)-1];
+
+			$result = array("hasExpired"=>$mostRecentToken->hasExpired());
+
+			return $result;
+
+
+		}
 
 
 }
